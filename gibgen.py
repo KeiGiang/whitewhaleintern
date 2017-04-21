@@ -1,42 +1,45 @@
 import random
 import sys
 import re
+import fileinput
 
 def main():
-    # check to see if a file is given
-    if (len(sys.argv) < 2):
-        print('Please run with a text file.')
-        return
-
-    # we only want to work with .txt files for now
-    if (not (sys.argv[1].endswith('.txt'))):
-        print('Please use a .txt file')
-        return
-
-    opFile = open(sys.argv[1])
-    fileDat = opFile.read()
-
-    if (len(fileDat) == 0):
-        print('Your file is empty')
-        return
-
     spChList = []
     spChIndexList = []
 
-    formatedData = splitNsave(fileDat, spChList, spChIndexList)
-    newString = ""
+    # we only want to work with .txt files for now
+    if(len(sys.argv) == 2):
+        if (sys.argv[1].endswith('.txt')):
+            opFile = open(sys.argv[1])
+            fileDat = opFile.read()
+            formatStr(fileDat, spChList, spChIndexList)
+            return
 
-    # for each word, gibberize it
-    for word in re.split('\s', formatedData):
-        newString += gibberize(word)
+    # to take into account other ways of passing in text
+    if (sys.stdin):
+        inputFile = fileinput.input()
+        fileDat = inputFile.readline()
+        formatStr(fileDat, spChList, spChIndexList)
+        return
 
+    if (isinstance(sys.argv[1], basestring)):
+        return formatStr(sys.argv[1], spChList, spChIndexList)
 
-    # add punctuation back in
-    result = addPunct(newString, spChList, spChIndexList)
-
-    print result
     exit()
     # end main()
+
+def formatStr(toFormat, spCharList, spCharIndexes):
+    newData = splitNsave(toFormat, spCharList, spCharIndexes)
+    newString = ""
+    # for each word, gibberize it
+    for word in re.split('\s', newData):
+        newString += gibberize(word)
+
+    # add punctuation back in
+    result = addPunct(newString, spCharList, spCharIndexes)
+
+    print result
+    # end formatStr()
 
 
 def gibberize(toGib):
