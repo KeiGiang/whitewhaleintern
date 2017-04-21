@@ -91,7 +91,8 @@ def checkAbbr(word):
     for ch in list(word):
         if (not re.match("[A-Z]", ch)):
             return False
-    # if all characters in word are not Capitalized, return
+    # if any character in the word is not capitalized, return false
+    # else, return true
     return True
     # end checkAbbr()
 
