@@ -53,7 +53,7 @@ For completion by applicant
 Quick Start
 -----------
 
-* This program can be run by using the command "python ./gibgen.py __textfiledirectory__". Where __textfiledirectory__ is a directory to a .txt file in your local system. For example, "text_files/sample.txt" would be a valid directory to run.
+* This program can be run by using the commands 'python ./gibgen.py "text"', "python ./gibgen.py __textfiledirectory__", "cat __textfiledirectory__ | python ./gibgen.py". Where __textfiledirectory__ is a directory to a .txt file in your local system. For example, "text_files/sample.txt" would be a valid directory to run.
 * Program was written for Python 2.7
 * Given the conditions set above, abbreviations and numbers are not scrambled. Due to probability, 3 character words will remain the same and 4 character words will have a 50% chance of returning the original word.
 
