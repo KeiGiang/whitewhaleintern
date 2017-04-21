@@ -15,6 +15,9 @@ def main():
             formatStr(fileDat, spChList, spChIndexList)
             return
 
+    if (isinstance(sys.argv[1], basestring)):
+        return formatStr(sys.argv[1], spChList, spChIndexList)
+
     # to take into account other ways of passing in text
     if (sys.stdin):
         inputFile = fileinput.input()
@@ -22,8 +25,6 @@ def main():
         formatStr(fileDat, spChList, spChIndexList)
         return
 
-    if (isinstance(sys.argv[1], basestring)):
-        return formatStr(sys.argv[1], spChList, spChIndexList)
 
     exit()
     # end main()
