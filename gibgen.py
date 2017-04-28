@@ -61,12 +61,18 @@ def gibberize(toGib):
     del letters[0]
     del letters[len(letters) - 1]
 
-    newWord = ""
-    i = 0
-    n = random.sample(range(0, len(letters)), len(letters))
-    for ch in letters:
-        newWord += letters[n[i]]
-        i += 1
+    loopCount = 0
+    while (loopCount < 3):
+        newWord = ""
+        i = 0
+        n = random.sample(range(0, len(letters)), len(letters))
+        for ch in letters:
+            newWord += letters[n[i]]
+            i += 1
+        result = firstLetter + newWord + lastLetter
+        if (result != toGib):
+            break
+        loopCount += 1
 
     return firstLetter + newWord + lastLetter
     # end gibberize()
