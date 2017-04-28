@@ -15,6 +15,7 @@ def main():
             formatStr(fileDat, spChList, spChIndexList)
             return
 
+    # if they passed in a string
     if (isinstance(sys.argv[1], basestring)):
         return formatStr(sys.argv[1], spChList, spChIndexList)
 
@@ -61,10 +62,12 @@ def gibberize(toGib):
     del letters[0]
     del letters[len(letters) - 1]
 
+    # loop if the word isn't scrambled. Max of 3 loops
     loopCount = 0
     while (loopCount < 3):
         newWord = ""
         i = 0
+        # grab a set of random numbers to determine what characters are added
         n = random.sample(range(0, len(letters)), len(letters))
         for ch in letters:
             newWord += letters[n[i]]
@@ -74,15 +77,16 @@ def gibberize(toGib):
             break
         loopCount += 1
 
-    return firstLetter + newWord + lastLetter
+    return result
     # end gibberize()
 
 def splitNsave(aString, spChList, spChIndexList):
+    # splits a string by the special characters (punctuations) and stores into a list
     bigList = list(aString)
     index = 0
     toReturn = ""
     for ch in bigList:
-        # if not alphabetical
+        # if not alphabetical, add to the special character list and store its' index
         if (not re.match('[a-zA-Z]', ch)):
             spChList.append(ch)
             spChIndexList.append(index)
@@ -114,7 +118,7 @@ def addPunct(aString, charList, chIndexList):
     for ch in charList:
         strList.insert(chIndexList[i], charList[i])
         i += 1
-
+ 
     result = ""
     i = 0
     for ch in strList:
