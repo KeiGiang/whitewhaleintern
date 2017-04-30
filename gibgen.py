@@ -7,25 +7,22 @@ def main():
     spChList = []
     spChIndexList = []
 
-    # we only want to work with .txt files for now
+    # 
     if(len(sys.argv) == 2):
+        # we only want to work with .txt files for now
         if (sys.argv[1].endswith('.txt')):
             opFile = open(sys.argv[1])
             fileDat = opFile.read()
-            formatStr(fileDat, spChList, spChIndexList)
-            return
-
-    # if they passed in a string
-    if (isinstance(sys.argv[1], basestring)):
-        return formatStr(sys.argv[1], spChList, spChIndexList)
+            return formatStr(fileDat, spChList, spChIndexList)
+        # if they passed in a string
+        if (isinstance(sys.argv[1], basestring)):
+            return formatStr(sys.argv[1], spChList, spChIndexList)
 
     # to take into account other ways of passing in text
     if (sys.stdin):
         inputFile = fileinput.input()
         fileDat = inputFile.readline()
-        formatStr(fileDat, spChList, spChIndexList)
-        return
-
+        return formatStr(fileDat, spChList, spChIndexList)
 
     exit()
     # end main()
@@ -72,6 +69,8 @@ def gibberize(toGib):
         for ch in letters:
             newWord += letters[n[i]]
             i += 1
+
+        # check
         result = firstLetter + newWord + lastLetter
         if (result != toGib):
             break
@@ -114,11 +113,13 @@ def addPunct(aString, charList, chIndexList):
     # break the string down into a list to add the proper punctuation in
     strList = list(aString)
 
+    # adding the punct in
     i = 0
     for ch in charList:
         strList.insert(chIndexList[i], charList[i])
         i += 1
- 
+
+    # create the final output:
     result = ""
     i = 0
     for ch in strList:
